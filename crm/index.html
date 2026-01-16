@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM Vendas - Hapvida / Notrelife</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="auth.js"></script>
+</head>
+
+<body>
+    <script>
+        // Proteção: redirecionar para login se não autenticado
+        if (!auth.isAuthenticated()) {
+            window.location.href = 'login.html';
+        }
+
+        // Obter informações do usuário
+        const currentUser = auth.getSession();
+    </script>
+
+    <header>
+        <div class="header-left">
+            <img src="_img/logomarcarajanocva_azul1.png" width="30%" alt="Logo">
+            <h1></h1>
+        </div>
+
+        <div class="search-box">
+            <span class="material-icons">search</span>
+            <input type="text" id="searchInput" placeholder="Buscar por Nome ou CPF..." oninput="filtrarBusca()">
+        </div>
+
+        <button class="btn-add" onclick="openModal()">+ Novo Cliente</button>
+
+        <div class="user-info">
+            <span id="userName"></span>
+            <button id="btnAdmin" class="btn-admin" onclick="window.location.href='admin.html'" style="display:none">
+                <span class="material-icons">admin_panel_settings</span>
+            </button>
+            <button class="btn-logout" onclick="logout()">
+                <span class="material-icons">logout</span> Sair
+            </button>
+        </div>
+    </header>
+
+    <nav class="month-tabs" id="monthTabs"></nav>
+
+    <div class="board" id="board"></div>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <h2 id="modalTitle">Novo Cadastro</h2>
+            <form id="leadForm">
+                <input type="hidden" id="editId">
+
+                <div class="section-title">Dados da Venda</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Data da Venda</label>
+                        <input type="date" id="dataVenda" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Data de Vencimento</label>
+                        <input type="date" id="dataVencimento" required>
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="section-title">Dados do Titular</div>
+                <div class="form-group">
+                    <label>Nome Completo</label>
+                    <input type="text" id="titularNome" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>CPF</label>
+                        <input type="text" id="titularCpf" placeholder="000.000.000-00">
+                    </div>
+                    <div class="form-group">
+                        <label>Data de Nascimento</label>
+                        <input type="date" id="titularNascimento">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Cidade / Estado</label>
+                    <input type="text" id="cidade" placeholder="Ex: São Paulo - SP">
+                </div>
+
+                <div class="form-group">
+                    <label>Plano do Titular</label>
+                    <select id="titularPlano" class="select-plano" required></select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Valor (R$)</label>
+                        <input type="number" step="0.01" id="titularValor" class="calc-input"
+                            oninput="calcularTotalGeral()">
+                    </div>
+                    <div class="form-group">
+                        <label>Desconto (R$)</label>
+                        <input type="number" step="0.01" id="titularDesconto" class="calc-input"
+                            oninput="calcularTotalGeral()">
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+                <div class="section-header">
+                    <div class="section-title">Dependentes</div>
+                    <button type="button" class="btn-small" onclick="addDependente()">+ Add Dependente</button>
+                </div>
+
+                <div id="containerDependentes"></div>
+
+                <div class="divider"></div>
+                <div class="total-display">
+                    Total Geral a Receber: <span id="displayTotalGeral">R$ 0,00</span>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel" onclick="closeModal()">Cancelar</button>
+                    <button type="submit" class="btn-save">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Exibir nome do usuário
+        document.getElementById('userName').textContent = currentUser.name;
+
+        // Mostrar botão Admin se for admin
+        if (auth.isAdmin()) {
+            document.getElementById('btnAdmin').style.display = 'inline-flex';
+        }
+
+        // Função de logout
+        function logout() {
+            if (confirm('Deseja realmente sair?')) {
+                auth.logout();
+                window.location.href = 'login.html';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Admin - Gerenciar Vendedores</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f5f7f8;
+        }
+
+        .admin-header {
+            background: white;
+            padding: 20px 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .admin-header h1 {
+            margin: 0;
+            color: #333;
+            font-size: 1.5rem;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .admin-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: #3bc8f5;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: #2ab3dc;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .users-table {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: #f8f9fa;
+        }
+
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .badge-admin {
+            background: #ffeaa7;
+            color: #d63031;
+        }
+
+        .badge-vendedor {
+            background: #dfe6e9;
+            color: #2d3436;
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 5px;
+        }
+
+        .btn-icon {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #999;
+            padding: 5px;
+            transition: color 0.2s;
+        }
+
+        .btn-icon:hover {
+            color: #333;
+        }
+
+        .btn-icon.edit:hover {
+            color: #2980b9;
+        }
+
+        .btn-icon.delete:hover {
+            color: #e74c3c;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            width: 500px;
+            max-width: 90%;
+        }
+
+        .modal h2 {
+            margin: 0 0 20px 0;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .alert {
+            padding: 12px 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .alert.success {
+            background: #d4edda;
+            color: #155724;
+            border-left: 4px solid #28a745;
+            display: block;
+        }
+
+        .alert.error {
+            background: #f8d7da;
+            color: #721c24;
+            border-left: 4px solid #dc3545;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="admin-header">
+        <h1>🛡️ Painel Administrativo - Gerenciar Vendedores</h1>
+        <div class="admin-actions">
+            <a href="index.html" class="btn-secondary">← Voltar ao CRM</a>
+            <button class="btn-primary" onclick="openAddModal()">+ Novo Vendedor</button>
+        </div>
+    </div>
+
+    <div class="admin-container">
+        <div id="alertBox" class="alert"></div>
+
+        <div class="users-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Tipo</th>
+                        <th>Data de Cadastro</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="usersTableBody">
+                    <!-- Preenchido via JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal Adicionar/Editar -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <h2 id="modalTitle">Novo Vendedor</h2>
+            <form id="userForm">
+                <input type="hidden" id="editUserId">
+
+                <div class="form-group">
+                    <label for="userName">Nome Completo *</label>
+                    <input type="text" id="userName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="userEmail">Email *</label>
+                    <input type="email" id="userEmail" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="userPassword">Senha *</label>
+                    <input type="password" id="userPassword" placeholder="Mínimo 6 caracteres" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="userType">Tipo *</label>
+                    <select id="userType" required>
+                        <option value="vendedor">Vendedor</option>
+                        <option value="admin">Administrador</option>
+                    </select>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal()">Cancelar</button>
+                    <button type="submit" class="btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script>
+        // Proteção: apenas admin pode acessar
+        if (!auth.isAuthenticated()) {
+            window.location.href = 'login.html';
+        } else if (!auth.isAdmin()) {
+            alert('Acesso negado! Apenas administradores podem acessar esta página.');
+            window.location.href = 'index.html';
+        }
+
+        const alertBox = document.getElementById('alertBox');
+        const modalOverlay = document.getElementById('modalOverlay');
+        const userForm = document.getElementById('userForm');
+        const usersTableBody = document.getElementById('usersTableBody');
+
+        function showAlert(message, type = 'success') {
+            alertBox.textContent = message;
+            alertBox.className = `alert ${type}`;
+            setTimeout(() => {
+                alertBox.className = 'alert';
+            }, 5000);
+        }
+
+        function loadUsers() {
+            const users = auth.getAllUsers();
+            usersTableBody.innerHTML = '';
+
+            users.forEach(user => {
+                const row = document.createElement('tr');
+                const date = new Date(user.createdAt).toLocaleDateString('pt-BR');
+
+                row.innerHTML = `
+                    <td>${user.name}</td>
+                    <td>${user.email}</td>
+                    <td><span class="badge badge-${user.type}">${user.type === 'admin' ? 'Administrador' : 'Vendedor'}</span></td>
+                    <td>${date}</td>
+                    <td>
+                        <div class="action-btns">
+                            <button class="btn-icon edit" onclick="editUser('${user.id}')" title="Editar">
+                                <span class="material-icons">edit</span>
+                            </button>
+                            <button class="btn-icon delete" onclick="deleteUser('${user.id}')" title="Excluir">
+                                <span class="material-icons">delete</span>
+                            </button>
+                        </div>
+                    </td>
+                `;
+                usersTableBody.appendChild(row);
+            });
+        }
+
+        function openAddModal() {
+            document.getElementById('modalTitle').textContent = 'Novo Vendedor';
+            document.getElementById('editUserId').value = '';
+            userForm.reset();
+            modalOverlay.style.display = 'flex';
+        }
+
+        function closeModal() {
+            modalOverlay.style.display = 'none';
+        }
+
+        function editUser(userId) {
+            const user = auth.getUserById(userId);
+            if (!user) return;
+
+            document.getElementById('modalTitle').textContent = 'Editar Usuário';
+            document.getElementById('editUserId').value = user.id;
+            document.getElementById('userName').value = user.name;
+            document.getElementById('userEmail').value = user.email;
+            document.getElementById('userPassword').value = ''; // Deixar vazio
+            document.getElementById('userPassword').placeholder = 'Deixe vazio para manter a senha atual';
+            document.getElementById('userPassword').required = false;
+            document.getElementById('userType').value = user.type;
+            modalOverlay.style.display = 'flex';
+        }
+
+        function deleteUser(userId) {
+            if (!confirm('Tem certeza que deseja excluir este usuário?')) return;
+
+            const result = auth.deleteUser(userId);
+            showAlert(result.message, result.success ? 'success' : 'error');
+            if (result.success) loadUsers();
+        }
+
+        userForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const userId = document.getElementById('editUserId').value;
+            const name = document.getElementById('userName').value;
+            const email = document.getElementById('userEmail').value;
+            const password = document.getElementById('userPassword').value;
+            const type = document.getElementById('userType').value;
+
+            let result;
+
+            if (userId) {
+                // Atualizar
+                const updates = { name, email, type };
+                if (password) updates.password = password;
+                result = auth.updateUser(userId, updates);
+            } else {
+                // Criar novo
+                if (!password || password.length < 6) {
+                    showAlert('A senha deve ter no mínimo 6 caracteres!', 'error');
+                    return;
+                }
+                result = auth.registerUser(email, password, name, type);
+            }
+
+            showAlert(result.message, result.success ? 'success' : 'error');
+            if (result.success) {
+                closeModal();
+                loadUsers();
+                userForm.reset();
+            }
+        });
+
+        // Fechar modal ao clicar fora
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) closeModal();
+        });
+
+        // Carrega usuários ao iniciar
+        loadUsers();
+    </script>
+</body>
+
+</html>

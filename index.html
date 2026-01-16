@@ -1,0 +1,669 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  <link rel="stylesheet" href="_css/style.css" />
+  <link rel="shortcut icon" href="_imagens/logo color cabeça.png" type="image/x-icon" />
+
+  <!-- Meta Tags para SEO -->
+  <meta name="description"
+    content="Raja Planos de Saúde - Hapvida com carência reduzida e desconto vitalício. Cobertura completa para você e sua família. Planos a partir de R$ 129,41." />
+  <meta name="keywords"
+    content="plano de saúde, Hapvida, carência reduzida, plano familiar, coparticipação, plano empresarial, Fortaleza, Ceará" />
+  <meta name="author" content="Raja Corretora" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Raja Planos de Saúde - Hapvida" />
+  <meta property="og:description"
+    content="Sua saúde em boas mãos. Planos a partir de R$ 129,41 com carência reduzida" />
+  <meta property="og:image" content="_imagens/Logomarca Hapvida Nova.webp" />
+
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="reveal.js" defer></script>
+  <script src="menu.js" defer></script>
+  <script src="web3forms-functions.js" defer></script>
+  <title>Raja Planos de Saúde</title>
+
+  <script>
+    (function (a, b, c, d) {
+      try {
+        var e = b.head || b.getElementsByTagName("head")[0];
+        var f = b.createElement("script");
+        f.setAttribute("src", c);
+        f.setAttribute("charset", "UTF-8");
+        f.defer = true;
+        a.neuroleadId = d;
+        e.appendChild(f);
+      } catch (g) { }
+    })(
+      window,
+      document,
+      "https://cdn.leadster.com.br/neurolead/neurolead.min.js",
+      "ZQZITACd7vRpsMTnptpa8w4oW"
+    );
+  </script>
+
+</head>
+
+<body>
+  <header>
+    <div class="interface">
+      <div class="logo">
+        <div class="logo-item">
+          <a href="#home">
+            <img src="_imagens/Logomarca Hapvida Nova.webp" alt="Logomarca-hapvida" width="100px" />
+          </a>
+        </div>
+        <div class="logo-item">
+          <a href="#home">
+            <img src="_imagens/grupo-notredame-intermedica-logo.png" alt="Logomarca-notredame" width="100px" />
+          </a>
+        </div>
+        <div class="logo-item">
+          <a href="#home">
+            <img src="_imagens/Logomarca Amels.png" alt="logomarca-ames" width="100px" />
+          </a>
+          <p class="rev">Revendedora Autorizada</p>
+        </div>
+      </div>
+      <!--logos-->
+      <nav class="menu-desktop">
+        <ul>
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="#Planos">Planos</a></li>
+          <li><a href="#Quem Somos">Diferenciais</a></li>
+          <li><a href="#Compre Online">Compre Online</a></li>
+          <li><a href="#Duvidas">Duvidas</a></li>
+          <li><a href="#Contatos">Contatos</a></li>
+        </ul>
+      </nav>
+
+      <div class="btn-contato">
+        <a href="https://wa.link/mqfugu">
+          <button>Fale Conosco</button>
+        </a>
+      </div><!--BTN-FALE CONOSCO-->
+
+      <div class="btn-abrir-menu" id="btn-menu" aria-label="Abrir menu de navegação">
+        <img src="_imagens/menu.png" width="30px" alt="Menu de navegação mobile">
+      </div>
+      <div class="menu-mobile" id="menu-mobile">
+        <div class="btn-fechar">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg"
+            viewBox="0 0 16 16">
+            <path
+              d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+          </svg>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#Planos">Planos</a></li>
+            <li><a href="#Quem Somos">Diferenciais</a></li>
+            <li><a href="#Compre Online">Compre Online</a></li>
+            <li><a href="#Duvidas">Duvidas</a></li>
+            <li><a href="#Contatos">Contatos</a></li>
+          </ul>
+        </nav>
+      </div><!--MENU-MOBILE-->
+
+      <div class="overlay-menu" id="overlay-menu"></div>
+    </div>
+    <!--fecha a tag interfaxe-->
+  </header>
+  <main>
+    <section class="topo-do-site" id="Home">
+      <div class="interface">
+        <div class="flex">
+          <div class="txt-topo-site efeito-txt-topo">
+            <h1>
+              SUA SAÚDE EM BOAS MÃOS. HAPVIDA, A ESCOLHA INTELIGENTE PARA
+              CUIDAR DE VOCÊ E SUA FAMÍLIA<span>.</span>
+            </h1>
+            <p>
+              Carência reduzida e Desconto Vitalício. Isso mesmo, faça seu
+              plano de saúde agora mesmo e receba carência reduzida para
+              consultas e exames simples e um mega desconto.
+            </p>
+
+            <div class="orcamento">
+              <a href="https://wa.link/mqfugu">
+                <button>ORÇAMENTO</button>
+              </a>
+            </div>
+          </div>
+          <!--TXT-TOPO-SITE-->
+
+          <div class="form-lead-capture efeito-img-topo">
+            <div class="form-lead-container">
+              <h3>Solicite sua Cotação</h3>
+              <p class="form-subtitle">Preencha os dados e receba uma proposta personalizada</p>
+
+              <form id="formLeadCapture" class="lead-form" action="https://api.web3forms.com/submit" method="POST"
+                onsubmit="return enviarLeadWhatsApp(event)">
+                <input type="hidden" name="access_key" value="7e1a06e6-92bb-4870-9a15-0e0d3ed2d7f5">
+                <input type="hidden" name="subject" value="🏥 Novo Lead - Site Raja Planos de Saúde">
+                <input type="hidden" name="from_name" value="Site Raja Corretora">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="lead-nome">Nome Completo *</label>
+                    <input type="text" id="lead-nome" name="nome" placeholder="Seu nome completo" required>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="lead-telefone">Telefone/WhatsApp *</label>
+                    <input type="tel" id="lead-telefone" name="telefone" placeholder="(00) 00000-0000"
+                      pattern="[0-9() -]{14,15}" required>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="lead-email">E-mail *</label>
+                    <input type="email" id="lead-email" name="email" placeholder="seu@email.com" required>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="lead-tipo-plano">Tipo de Plano *</label>
+                    <select id="lead-tipo-plano" name="tipo-plano" required>
+                      <option value="">Selecione...</option>
+                      <option value="Individual">Individual</option>
+                      <option value="Empresarial">Empresarial</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row form-row-2">
+                  <div class="form-group">
+                    <label for="lead-estado">Estado *</label>
+                    <select id="lead-estado" name="estado" onchange="carregarCidades()" required>
+                      <option value="">Selecione...</option>
+                      <option value="AC">Acre</option>
+                      <option value="AL">Alagoas</option>
+                      <option value="AP">Amapá</option>
+                      <option value="AM">Amazonas</option>
+                      <option value="BA">Bahia</option>
+                      <option value="CE">Ceará</option>
+                      <option value="DF">Distrito Federal</option>
+                      <option value="ES">Espírito Santo</option>
+                      <option value="GO">Goiás</option>
+                      <option value="MA">Maranhão</option>
+                      <option value="MT">Mato Grosso</option>
+                      <option value="MS">Mato Grosso do Sul</option>
+                      <option value="MG">Minas Gerais</option>
+                      <option value="PA">Pará</option>
+                      <option value="PB">Paraíba</option>
+                      <option value="PR">Paraná</option>
+                      <option value="PE">Pernambuco</option>
+                      <option value="PI">Piauí</option>
+                      <option value="RJ">Rio de Janeiro</option>
+                      <option value="RN">Rio Grande do Norte</option>
+                      <option value="RS">Rio Grande do Sul</option>
+                      <option value="RO">Rondônia</option>
+                      <option value="RR">Roraima</option>
+                      <option value="SC">Santa Catarina</option>
+                      <option value="SP">São Paulo</option>
+                      <option value="SE">Sergipe</option>
+                      <option value="TO">Tocantins</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="lead-cidade">Cidade *</label>
+                    <select id="lead-cidade" name="cidade" required>
+                      <option value="">Selecione o estado primeiro</option>
+                    </select>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn-enviar-lead">ENVIAR</button>
+              </form>
+            </div>
+          </div>
+          <!--FORM-LEAD-CAPTURE-->
+        </div>
+        <!--FLEX-->
+      </div>
+      <!--INTERFACE-->
+    </section>
+    <!--TOPO DO SITE-->
+
+    <section class="especialidades-e-planos" id="Planos">
+      <div class="interface">
+        <h2 class="titulo"><span>PLANOS</span> E COBERTURAS </h2>
+        <div class="flex">
+          <div class="especialidades-box efeito-card01">
+            <img src="_imagens/logo color cabeça.png" alt="logomarca hapvida" />
+            <h3>NOSSO PLANO COMPLETO COPARTICIPAÇÃO PARCIAL</h3>
+            <p>
+              Plano de Saúde completo com direito à consultas, exames,
+              internações, cirurgias, terapias, obstetrícia, odontologia. Com
+              a coparticipação apenas nas terapias. Plano á partir R$
+            </p>
+            <h3><span>205,43</span></h3>
+          </div>
+          <!--ESPECIALIDADES-BOX-->
+
+          <div class="especialidades-box efeito-card02">
+            <img src="_imagens/logo color cabeça.png" alt="logomarca hapvida" />
+            <h3>NOSSO PLANO COMPLETO COPARTICIPAÇÃO</h3>
+            <p>
+              Plano de Saúde completo com um ótimo custo benefício pra toda
+              família que dá direito à consultas, exames, internações,
+              cirurgias, terapias, obstetrícia, odontologia. Planos á partir
+              R$
+            </p>
+            <h3><span>168,50</span></h3>
+          </div>
+          <!--ESPECIALIDADES-BOX-->
+
+          <div class="especialidades-box efeito-card03">
+            <img src="_imagens/logo color cabeça.png" alt="logomarca hapvida" />
+            <h3>NOSSO PLANO EMPRESARIAL COM COPARTICIPAÇÃO PARCIAL</h3>
+            <p>
+              Plano de Saúde completo para seus colaboradores, com um custo
+              baixo e cobertura incrível.Contratação a partir de dois
+              usuários. Não deixe seu colaboradores sem cobertura. Planos a
+              partir R$
+            </p>
+            <h3><span>159,60</span></h3>
+          </div>
+          <!--ESPECIALIDADES-BOX-->
+        </div>
+        <!--FLEX-->
+      </div>
+      <!--INTERFACE-->
+    </section>
+    <!--especialidades-e-planos-->
+
+    <section class="quem-somos" id="Quem Somos">
+      <div class="interface">
+        <h2 class="titulo"><span>CONHEÇA</span> MELHOR</h2>
+        <div class="flex">
+          <div class="card card-vendedor01">
+            <div class="card-inner">
+              <div class="card-image">
+                <img src="_imagens/Jamile.png" alt="Imagem do Card" />
+              </div>
+              <div class="card-content">
+                <h2>Rede Exclusiva</h2>
+                <p>
+                  Com 87 hospitais próprios, 77 prontos atendimentos, 331 clínicas e 269 centros de diagnóstico por
+                  imagem e coleta laboratorial.
+                </p>
+              </div>
+            </div>
+          </div>
+          <!--Final Card Jamile-->
+
+          <div class="card2 card-vendedor02">
+            <div class="card-inner2">
+              <div class="card-image2">
+                <img src="_imagens/regis.png" alt="Imagem do Card" />
+              </div>
+              <div class="card-content2">
+                <h2>Atendimento ao
+
+                  cliente 24h</h2>
+                <p>
+                  A sua saúde não pode esperar e
+                  por isso, temos uma equipe
+                  exclusiva para te ajudar com
+                  marcações de consulta, exames e
+                  autorizações.
+                </p>
+              </div>
+            </div>
+          </div>
+          <!--Final Card Regis-->
+
+          <div class="card3 card-vendedor03">
+            <div class="card-inner3">
+              <div class="card-image3">
+                <img src="_imagens/jamile02.jpg" alt="Tabela de Carência Reduzida" />
+              </div>
+              <div class="card-content3">
+                <h2>Rede Pediátrica
+
+                  Exclusiva</h2>
+                <p>
+                  A maior rede de atendimento
+                  infantil, com UTI neonatal,
+                  acompanhamento pediátrico e
+                  uma infraestrutura moderna.
+                </p>
+              </div>
+            </div>
+          </div>
+          <!--card David-->
+          <!--CARD01-->
+          <div class="txt-quem-somos"></div>
+          <!--txt-quem-somos-->
+        </div>
+        <!--FLEX-->
+      </div>
+      <!--inter face-->
+    </section>
+    <!--quem somos-->
+
+    <!--Compre Online-->
+
+    <section class="compre-online" id="Compre Online">
+      <div class="interface2">
+        <h2 class="titulo"><span>FÁCIL</span> RÁPIDO E SEGURO!</h2>
+        <p class="P1 efeito-p1">
+          Pensando na sua segurança física e digital, <br />
+          o Hapvida criou um sistema de vendas totalmente online, ou seja,
+          <br />
+          você pode contratar nossos planos sem sair da sua casa.
+        </p>
+        <div class="flex">
+          <div class="compre-online-img">
+            <picture class="efeito-img02">
+              <source media="(max-width: 750px )" srcset="_imagens/flow-vertical.png" type="image/png" />
+              <img src="_imagens/flow-horizontal.png" alt="Monte seu Plano" />
+            </picture>
+          </div>
+        </div>
+
+        <div class="btn-contato">
+          <a href="https://wa.link/mqfugu">
+            <button>Fale Conosco</button>
+          </a>
+        </div>
+      </div>
+    </section>
+    <!--Fim do Compre Online-->
+
+    <!--Cinco Motivos Para ter um Plano de Saúde-->
+    <section class="cinco-motivos" id="Duvidas">
+      <div class="interface">
+        <div class="flex">
+          <div class="img-cinco-motivos efeito-img-sobre">
+            <img src="_imagens/Doctor03.png" alt="Médico de Plantão" width="400px" loading="lazy" />
+          </div>
+          <!--Imegem Cinco Motivos-->
+
+          <div class="txt-cinco-motivos efito-titulo2">
+            <h2 class="titulo2">
+              <span>3 MOTIVOS,</span> Para Ter Um Plano De Saúde
+            </h2>
+            <p>
+              <strong>01. Garantia de atendimento</strong>
+            </p>
+            <p>
+              Ir ao hospital e não poder ser atendido, seja por filas enormes
+              ou faltas de profissionais, é uma situação que ninguém quer
+              passar. E se dependermos apenas do sistema público de saúde
+              podemos correr esse risco, logo, ter um plano de saúde é a
+              garantia de atendimento a qualquer momento.
+            </p>
+            <p>
+              <strong>02. Mais agilidade no atendimento</strong>
+            </p>
+            <p>
+              Quando falamos de saúde, ter uma resposta rápida quanto à
+              situação faz toda a diferença. Por isso, uma das vantagens em
+              ter um plano de saúde é a rapidez em conseguir um atendimento,
+              além de direcionar para os melhores hospitais.
+            </p>
+            <p>
+              <strong>03. Segurança e tranquilidade para toda família</strong>
+            </p>
+            <p>
+              Diante da atual situação em que vivemos, depender única e
+              exclusivamente do sistema público de saúde não é a melhor ideia,
+              por isso, ter um plano de saúde pode trazer tranquilidade e
+              segurança para você e sua família, pois garante atendimento com
+              os melhores profissionais e nos melhores hospitais.
+            </p>
+
+            <p>
+              Que tal escolher o melhor plano para você? Entre em contato com
+              a gente e saiba mais. 🍀✨
+            </p>
+
+            <div class="btn-social">
+              <!-- TODO: Substituir # pela URL do WhatsApp -->
+              <a href="https://wa.link/mqfugu" target="_blank" rel="noopener noreferrer"
+                aria-label="Fale conosco pelo WhatsApp"><button aria-label="WhatsApp">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-whatsapp" viewBox="0 0 16 16">
+                    <path
+                      d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
+                  </svg></button></a>
+              <a href="https://www.instagram.com/corretoraraja/" target="_blank" rel="noopener noreferrer"
+                aria-label="Siga-nos no Instagram"><button aria-label="Instagram">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-instagram" viewBox="0 0 16 16">
+                    <path
+                      d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
+                  </svg></button></a>
+              <a href="https://www.facebook.com/profile.php?id=61577246433821" target="_blank" rel="noopener noreferrer"
+                aria-label="Curta nossa página no Facebook"><button aria-label="Facebook">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-facebook" viewBox="0 0 16 16">
+                    <path
+                      d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" />
+                  </svg></button></a>
+            </div>
+          </div>
+          <!--txt Cinco Motivos-->
+        </div>
+        <!--Flex-->
+      </div>
+      <!--Interface-->
+    </section>
+    <br><br>
+    <!--Final dos Cinco Motivos Para ter um Plano de Saúde-->
+
+
+    <!--Começo do Formulario-->
+
+    <section class="formulario">
+      <div class="interface">
+        <h2 class="titulo2"><span>SOLICITE</span> UMA COTAÇÃO </h2>
+        <p class="P1 efeito-p1">
+          Preencha Corretamente o Formulário Abaixo e Entraremos <br> em Contato com Você.
+        </p>
+
+        <!-- Formulário de Cotação com Web3Forms -->
+        <form id="formCotacao" action="https://api.web3forms.com/submit" method="POST"
+          onsubmit="return enviarCotacaoWhatsApp(event)">
+          <!-- Web3Forms Configuration -->
+          <input type="hidden" name="access_key" value="7e1a06e6-92bb-4870-9a15-0e0d3ed2d7f5">
+          <input type="hidden" name="subject" value="📋 Nova Cotação - Site Raja Planos de Saúde">
+          <input type="hidden" name="from_name" value="Site Raja Corretora">
+
+          <label for="nome"></label>
+          <input type="text" name="nome" id="nome" placeholder="Seu Nome:" required>
+          <label for="email"></label>
+          <input type="email" name="email" id="email" placeholder="E-mail:" required>
+          <label for="whatsapp"></label>
+          <input type="tel" name="whatsapp" id="whatsapp" placeholder="Contato/Whatsapp:" pattern="[0-9]{10,11}"
+            title="Digite apenas números (DDD + telefone)" required>
+          <div class="btn-enviar"><input type="submit" value="COTAÇÃO"></div>
+        </form>
+
+        <script>
+          function enviarParaWhatsApp(event) {
+            event.preventDefault();
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const whatsapp = document.getElementById('whatsapp').value;
+
+            const mensagem = `Olá! Vim do site e gostaria de uma cotação.%0A%0ANome: ${nome}%0AEmail: ${email}%0AWhatsApp: ${whatsapp}`;
+            const urlWhatsApp = `https://wa.me/5585991598050?text=${mensagem}`;
+
+            window.open(urlWhatsApp, '_blank');
+
+            // Redireciona para página de obrigado após 1 segundo
+            setTimeout(() => {
+              window.location.href = 'obrigado.html';
+            }, 1000);
+
+            return false;
+          }
+
+          // NOVO: Função para enviar lead do formulário principal
+          function enviarLeadWhatsApp(event) {
+            event.preventDefault();
+            const nome = document.getElementById('lead-nome').value;
+            const telefone = document.getElementById('lead-telefone').value;
+            const email = document.getElementById('lead-email').value;
+            const tipoPlano = document.getElementById('lead-tipo-plano').value;
+            const estado = document.getElementById('lead-estado').options[document.getElementById('lead-estado').selectedIndex].text;
+            const cidade = document.getElementById('lead-cidade').options[document.getElementById('lead-cidade').selectedIndex].text;
+
+            const mensagem = `🏥 *Nova Solicitação de Cotação*%0A%0A` +
+              `👤 *Nome:* ${nome}%0A` +
+              `📱 *Telefone:* ${telefone}%0A` +
+              `📧 *Email:* ${email}%0A` +
+              `📋 *Tipo de Plano:* ${tipoPlano}%0A` +
+              `📍 *Localização:* ${cidade} - ${estado}%0A%0A` +
+              `_Mensagem enviada pelo site_`;
+
+            const urlWhatsApp = `https://wa.link/mqfugu?text=${mensagem}`;
+
+            window.open(urlWhatsApp, '_blank');
+
+            // Redireciona para página de obrigado após 1 segundo
+            setTimeout(() => {
+              window.location.href = 'obrigado.html';
+            }, 1000);
+
+            return false;
+          }
+
+          // Base de dados de cidades do Brasil (principais cidades)
+          const cidadesPorEstado = {
+            'AC': ['Rio Branco', 'Cruzeiro do Sul', 'Sena Madureira', 'Tarauacá', 'Feijó'],
+            'AL': ['Maceió', 'Arapiraca', 'Palmeira dos Índios', 'Rio Largo', 'Penedo'],
+            'AP': ['Macapá', 'Santana', 'Laranjal do Jari', 'Oiapoque', 'Porto Grande'],
+            'AM': ['Manaus', 'Parintins', 'Itacoatiara', 'Manacapuru', 'Coari'],
+            'BA': ['Salvador', 'Feira de Santana', 'Vitória da Conquista', 'Camaçari', 'Itabuna', 'Juazeiro', 'Lauro de Freitas', 'Ilhéus', 'Jequié', 'Teixeira de Freitas'],
+            'CE': ['Fortaleza', 'Caucaia', 'Juazeiro do Norte', 'Maracanaú', 'Sobral', 'Crato', 'Itapipoca', 'Maranguape', 'Iguatu', 'Quixadá'],
+            'DF': ['Brasília', 'Taguatinga', 'Ceilândia', 'Samambaia', 'Gama'],
+            'ES': ['Vitória', 'Vila Velha', 'Serra', 'Cariacica', 'Viana', 'Cachoeiro de Itapemirim', 'Linhares', 'São Mateus', 'Colatina', 'Guarapari'],
+            'GO': ['Goiânia', 'Aparecida de Goiânia', 'Anápolis', 'Rio Verde', 'Luziânia', 'Águas Lindas de Goiás', 'Valparaíso de Goiás', 'Trindade', 'Formosa', 'Novo Gama'],
+            'MA': ['São Luís', 'Imperatriz', 'São José de Ribamar', 'Timon', 'Caxias', 'Codó', 'Paço do Lumiar', 'Açailândia', 'Bacabal', 'Balsas'],
+            'MT': ['Cuiabá', 'Várzea Grande', 'Rondonópolis', 'Sinop', 'Tangará da Serra', 'Cáceres', 'Sorriso', 'Lucas do Rio Verde', 'Barra do Garças', 'Primavera do Leste'],
+            'MS': ['Campo Grande', 'Dourados', 'Três Lagoas', 'Corumbá', 'Ponta Porã', 'Naviraí', 'Nova Andradina', 'Aquidauana', 'Sidrolândia', 'Maracaju'],
+            'MG': ['Belo Horizonte', 'Uberlândia', 'Contagem', 'Juiz de Fora', 'Betim', 'Montes Claros', 'Ribeirão das Neves', 'Uberaba', 'Governador Valadares', 'Ipatinga'],
+            'PA': ['Belém', 'Ananindeua', 'Santarém', 'Marabá', 'Castanhal', 'Parauapebas', 'Itaituba', 'Cametá', 'Bragança', 'Abaetetuba'],
+            'PB': ['João Pessoa', 'Campina Grande', 'Santa Rita', 'Patos', 'Bayeux', 'Sousa', 'Cajazeiras', 'Guarabira', 'Mamanguape', 'Sapé'],
+            'PR': ['Curitiba', 'Londrina', 'Maringá', 'Ponta Grossa', 'Cascavel', 'São José dos Pinhais', 'Foz do Iguaçu', 'Colombo', 'Guarapuava', 'Paranaguá'],
+            'PE': ['Recife', 'Jaboatão dos Guararapes', 'Olinda', 'Paulista', 'Caruaru', 'Petrolina', 'Cabo de Santo Agostinho', 'Camaragibe', 'Garanhuns', 'Vitória de Santo Antão'],
+            'PI': ['Teresina', 'Parnaíba', 'Picos', 'Piripiri', 'Floriano', 'Campo Maior', 'Barras', 'Altos', 'Esperantina', 'José de Freitas'],
+            'RJ': ['Rio de Janeiro', 'São Gonçalo', 'Duque de Caxias', 'Nova Iguaçu', 'Niterói', 'Belford Roxo', 'Campos dos Goytacazes', 'São João de Meriti', 'Petrópolis', 'Volta Redonda'],
+            'RN': ['Natal', 'Mossoró', 'Parnamirim', 'São Gonçalo do Amarante', 'Macaíba', 'Ceará-Mirim', 'Caicó', 'Assu', 'Currais Novos', 'Nova Cruz'],
+            'RS': ['Porto Alegre', 'Caxias do Sul', 'Pelotas', 'Canoas', 'Santa Maria', 'Gravataí', 'Viamão', 'Novo Hamburgo', 'São Leopoldo', 'Rio Grande'],
+            'RO': ['Porto Velho', 'Ji-Paraná', 'Ariquemes', 'Vilhena', 'Cacoal', 'Jaru', 'Rolim de Moura', 'Guajará-Mirim', 'Pimenta Bueno', 'Buritis'],
+            'RR': ['Boa Vista', 'Rorainópolis', 'Caracaraí', 'Alto Alegre', 'Mucajaí'],
+            'SC': ['Florianópolis', 'Joinville', 'Blumenau', 'São José', 'Criciúma', 'Chapecó', 'Itajaí', 'Jaraguá do Sul', 'Lages', 'Palhoça'],
+            'SP': ['São Paulo', 'Guarulhos', 'Campinas', 'São Bernardo do Campo', 'Santo André', 'Osasco', 'São José dos Campos', 'Ribeirão Preto', 'Sorocaba', 'Santos'],
+            'SE': ['Aracaju', 'Nossa Senhora do Socorro', 'Lagarto', 'Itabaiana', 'Estância', 'São Cristóvão', 'Tobias Barreto', 'Simão Dias', 'Propriá', 'Barra dos Coqueiros'],
+            'TO': ['Palmas', 'Araguaína', 'Gurupi', 'Porto Nacional', 'Paraíso do Tocantins', 'Colinas do Tocantins', 'Guaraí', 'Miracema do Tocantins', 'Formoso do Araguaia', 'Tocantinópolis']
+          };
+
+          function carregarCidades() {
+            const estadoSelect = document.getElementById('lead-estado');
+            const cidadeSelect = document.getElementById('lead-cidade');
+            const estadoSelecionado = estadoSelect.value;
+
+            // Limpa as opções anteriores
+            cidadeSelect.innerHTML = '<option value="">Selecione a cidade</option>';
+
+            if (estadoSelecionado && cidadesPorEstado[estadoSelecionado]) {
+              const cidades = cidadesPorEstado[estadoSelecionado];
+              cidades.forEach(cidade => {
+                const option = document.createElement('option');
+                option.value = cidade;
+                option.textContent = cidade;
+                cidadeSelect.appendChild(option);
+              });
+              cidadeSelect.disabled = false;
+            } else {
+              cidadeSelect.disabled = true;
+            }
+          }
+        </script>
+
+      </div>
+    </section>
+  </main>
+
+  <!--Final do  Formulario-->
+
+
+  <footer>
+    <div class="interface">
+      <div class="line-footer borda">
+        <div class="flex">
+          <div class="logo-footer">
+            <div class="logo-item">
+              <a href="#home">
+                <img src="_imagens/Logomarca Hapvida Nova.webp" alt="logomarca Hapvida" width="120px">
+              </a>
+            </div>
+            <div class="logo-item">
+              <a href="#home">
+                <img src="_imagens/grupo-notredame-intermedica-logo.png" alt="logomarca Grupo Notredame" width="120px">
+              </a>
+            </div>
+            <div class="logo-item">
+              <a href="#home">
+                <img src="_imagens/Logomarca Amels.png" alt="logomarca Ames Conceito" width="120px">
+              </a>
+              <p class="rev">Revendedora Autorizada</p>
+            </div>
+          </div><!--logo-footer-->
+          <div class="termos">
+            <a href="politica.html">Política de Privacidade</a>
+            <a href="#">Termo de Uso</a>
+            <a href="crm/login.html">Área do Vendedor</a>
+          </div>
+          <div class="btn-social2">
+            <a href="https://wa.link/mqfugu"><button>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-whatsapp" viewBox="0 0 16 16">
+                  <path
+                    d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
+                </svg></button></a>
+            <a href="https://www.instagram.com/corretoraraja/" target="_blank" rel="noopener noreferrer"><button>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-instagram" viewBox="0 0 16 16">
+                  <path
+                    d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
+                </svg></button></a>
+            <a href="https://www.facebook.com/profile.php?id=61577246433821" target="_blank"
+              rel="noopener noreferrer"><button>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-facebook" viewBox="0 0 16 16">
+                  <path
+                    d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" />
+                </svg></button></a>
+          </div>
+        </div><!--flex-->
+      </div><!--line-footer cima-->
+
+
+      <div class="line-footer">
+        <div class="page-inner-content copyright">
+          <p>&#169 Copyright 2023 - Ideia Atualizada - Todos Direitos Reservados</p>
+        </div>
+      </div><!--line-footer baixo-->
+    </div><!--interface-->
+  </footer>
+</body>
+
+</html>

@@ -1,0 +1,1054 @@
+ /* ESTILO GERAL*/
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+
+ }
+
+ html {
+     scroll-behavior: smooth;
+ }
+
+ body {
+     background-color: black;
+     height: 100vh;
+
+ }
+
+ .interface {
+     max-width: 1280px;
+     margin: 0 auto;
+
+ }
+
+ .flex {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     gap: 80px;
+
+
+ }
+
+ .efeito-txt-topo, .efeito-img-topo, .titulo, .efeito-card01, .efeito-card02, .efeito-card03, .card-vendedor01,
+ .card-vendedor02, .card-vendedor03, .efeito-img-sobre, .efito-titulo2, .efeito-p1, .efeito-img02 {
+     visibility: hidden;
+ }
+
+ .btn-contato button {
+     padding: 10px 40px;
+     font-size: 18px;
+     font-weight: 600;
+     background-color: #00FF08;
+     border: 0;
+     border-radius: 30px;
+     cursor: pointer;
+
+ }
+
+ .btn-contato button:hover, form .btn-enviar input:hover {
+     box-shadow: 0px 0px 8px #00ff08;
+     transform: scale(1.2);
+     transition: 0.6s;
+ }
+
+ h2.titulo {
+     color: #fff;
+     font-size: 34px;
+     text-align: center;
+ }
+
+ h2.titulo span {
+     color: #00FF08;
+ }
+
+ /* ESTILO DO CABEÇALHO */
+
+ header {
+     padding: 40px 4%;
+
+ }
+
+ header>.interface {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+ }
+
+ header a {
+     color: #7d7d7d;
+     text-decoration: none;
+     display: inline-block;
+     transition: 1s;
+
+ }
+
+ header nav.menu-desktop a:hover {
+     color: #fff;
+     transform: scale(1.22);
+
+ }
+
+ header nav ul {
+     list-style-type: none;
+ }
+
+ header nav.menu-desktop ul li {
+     display: inline-block;
+     padding: 0 20px;
+ }
+
+ /* ESTILOS DOS BOTÕES */
+
+ .orcamento button {
+     padding: 10px 40px;
+     font-size: 18px;
+     font-weight: 600;
+     background-color: #00FF08;
+     border: 0;
+     border-radius: 30px;
+ }
+
+ .orcamento button:hover {
+     box-shadow: 0px 0px 8px #00ff08;
+     transform: scale(1.2);
+     transition: 0.6s;
+ }
+
+ .img-topo-site {
+     margin-right: 22px;
+
+ }
+
+  /* Estilos do logo container */
+  header .logo {
+      display: flex;
+      align-items: flex-start;
+      gap: 30px;
+  }
+
+  .logo-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+  }
+
+  .logo-item a {
+      display: block;
+  }
+
+  .rev {
+      color: #ff9d00;
+      font-size: 10px;
+      text-align: center;
+      margin: 0;
+      white-space: nowrap;
+  }
+
+ /*ESTILO MENU MOBILE*/
+
+ .btn-abrir-menu img {
+     width: 30px;
+ }
+
+ .menu-mobile {
+     background-color: #000;
+     height: 100vh;
+     position: fixed;
+     top: 0;
+     right: 0;
+     z-index: 99999;
+     width: 0%;
+     overflow: hidden;
+     transition: .4s;
+ }
+
+ .menu-mobile.abrir-menu {
+     width: 70%;
+ }
+
+ .menu-mobile.abrir-menu~.overlay-menu {
+     display: block;
+ }
+
+ .menu-mobile .btn-fechar {
+     padding: 20px 4%;
+ }
+
+ .menu-mobile .btn-fechar svg {
+     color: #00FF08;
+     font-size: 30px;
+ }
+
+ .menu-mobile nav ul {
+     text-align: right;
+ }
+
+ .menu-mobile nav ul li a {
+     color: #fff;
+     font-size: 22px;
+     font-weight: 300;
+     padding: 20px 4%;
+     display: block;
+
+ }
+
+ .menu-mobile nav ul li a:hover {
+     background-color: #00FF08;
+     color: #000;
+     font-weight: 500;
+
+
+ }
+
+ .btn-abrir-menu {
+     display: none;
+ }
+
+ .overlay-menu {
+     background-color: #000000cb;
+     width: 100%;
+     height: 100%;
+     position: fixed;
+     top: 0;
+     left: 0;
+     z-index: 88888;
+     display: none;
+ }
+
+ /* ESTILO DO TOPO DO SITE */
+
+ section .topo-do-site {
+     padding: 40px 4%;
+ }
+
+ section.topo-do-site.flex {
+     align-items: center;
+
+
+
+ }
+
+ .topo-do-site h1 {
+     color: #fff;
+     font-size: 60px;
+     line-height: 60px;
+ }
+
+ .topo-do-site .txt-topo-site h1 span {
+     color: #00FF08;
+
+ }
+
+ .topo-do-site .txt-topo-site p {
+     color: #fff;
+     margin: 40px 0px;
+     font-size: 20PX;
+ }
+
+
+
+ .topo-do-site .img-topo-site img {
+     position: relative;
+     animation: flutuando 4s ease-in-out alternate;
+
+
+ }
+
+ @keyframes flutuando {
+     0% {
+         top: 0;
+     }
+
+     100% {
+         top: 30px;
+     }
+ }
+
+ /* FORMULÁRIO DE CAPTAÇÃO DE LEADS */
+ .form-lead-capture {
+     width: 100%;
+     max-width: 540px;
+ }
+
+ .form-lead-container {
+     background: linear-gradient(135deg, rgba(0, 255, 8, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%);
+     border: 2px solid #00FF08;
+     border-radius: 20px;
+     padding: 35px 30px;
+     box-shadow: 0 10px 40px rgba(0, 255, 8, 0.3);
+     backdrop-filter: blur(10px);
+ }
+
+ .form-lead-container h3 {
+     color: #00FF08;
+     font-size: 28px;
+     font-weight: 700;
+     margin-bottom: 8px;
+     text-align: center;
+ }
+
+ .form-subtitle {
+     color: #fff;
+     font-size: 14px;
+     text-align: center;
+     margin-bottom: 25px;
+     opacity: 0.9;
+ }
+
+ .lead-form {
+     display: flex;
+     flex-direction: column;
+     gap: 18px;
+ }
+
+ .form-row {
+     display: flex;
+     gap: 15px;
+     width: 100%;
+ }
+
+ .form-row-2 {
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     gap: 15px;
+ }
+
+ .form-group {
+     flex: 1;
+     display: flex;
+     flex-direction: column;
+ }
+
+ .form-group label {
+     color: #fff;
+     font-size: 13px;
+     font-weight: 600;
+     margin-bottom: 8px;
+     display: block;
+ }
+
+ .form-group input,
+ .form-group select {
+     width: 100%;
+     padding: 12px 15px;
+     border: 1.5px solid rgba(0, 255, 8, 0.3);
+     border-radius: 10px;
+     background-color: rgba(255, 255, 255, 0.05);
+     color: #fff;
+     font-size: 14px;
+     transition: all 0.3s ease;
+     outline: none;
+ }
+
+ .form-group input::placeholder {
+     color: rgba(255, 255, 255, 0.5);
+ }
+
+ .form-group input:focus,
+ .form-group select:focus {
+     border-color: #00FF08;
+     background-color: rgba(0, 255, 8, 0.08);
+     box-shadow: 0 0 0 3px rgba(0, 255, 8, 0.1);
+ }
+
+ .form-group select {
+     cursor: pointer;
+     appearance: none;
+     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2300FF08' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+     background-repeat: no-repeat;
+     background-position: right 12px center;
+     padding-right: 35px;
+ }
+
+ .form-group select option {
+     background-color: #1a1a1a;
+     color: #fff;
+     padding: 10px;
+ }
+
+ .btn-enviar-lead {
+     width: 100%;
+     padding: 15px 20px;
+     background: linear-gradient(135deg, #00FF08 0%, #00cc06 100%);
+     color: #000;
+     font-size: 16px;
+     font-weight: 700;
+     border: none;
+     border-radius: 12px;
+     cursor: pointer;
+     transition: all 0.3s ease;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     gap: 10px;
+     margin-top: 10px;
+     box-shadow: 0 4px 15px rgba(0, 255, 8, 0.4);
+ }
+
+ .btn-enviar-lead:hover {
+     transform: scale(1.05);
+     box-shadow: 0 6px 25px rgba(0, 255, 8, 0.6);
+ }
+
+ .btn-enviar-lead:active {
+     transform: scale(0.98);
+ }
+
+ .btn-enviar-lead svg {
+     width: 20px;
+     height: 20px;
+ }
+
+
+
+ /*especialidades Planos e Coberturas*/
+
+
+ section .especialidades-e-planos {
+     padding: 40px 4%;
+
+ }
+
+ section.especialidades-e-planos.flex {
+     gap: 40px;
+ }
+
+
+ .especialidades-e-planos .especialidades-box {
+     color: #fff;
+     padding: 40px;
+     border-radius: 22px;
+     margin-top: 48px;
+     transition: .2s;
+ }
+
+ .especialidades-e-planos .especialidades-box:hover {
+     transform: scale(1.08);
+     box-shadow: 0 0 22px #ffffff92;
+ }
+
+ .especialidades-e-planos .especialidades-box img {
+     width: 100px;
+ }
+
+ .especialidades-e-planos .especialidades-box h3 {
+     font-size: 30px;
+     margin: 15px 0;
+ }
+
+
+ .especialidades-e-planos .especialidades-box h3 span {
+     color: #00FF08;
+     font-size: 100px;
+ }
+
+
+ /*QUEM SOMOS*/
+
+
+
+
+ section .quem-somos {
+     padding: 80px 4%;
+
+ }
+
+ .card {
+     width: 300px;
+     overflow: hidden;
+     border-radius: 15px;
+     box-shadow: 0 0 22px rgba(253, 253, 253, 0.72);
+     background-color: #fff;
+
+ }
+
+ .card-inner {
+     position: relative;
+     overflow: hidden;
+     border-radius: 15px;
+     transition: transform 0.3s ease-in-out;
+ }
+
+ .card:hover .card-inner {
+     transform: scale(1.05);
+ }
+
+ .card-image img {
+     width: 100%;
+     height: auto;
+     border-bottom: 2px solid #dddddd00;
+     transition: transform 0.5s ease-in-out;
+ }
+
+ .card:hover .card-image img {
+     transform: scale(1.1);
+ }
+
+ .card-content {
+     padding: 20px;
+     text-align: center;
+ }
+
+ .card-content h2 {
+     margin-top: 0;
+     color: #333;
+ }
+
+ .card-content p {
+     margin-bottom: 0;
+     color: #666;
+ }
+
+
+ .titulo {
+
+     margin-top: 100px;
+     margin-bottom: 100px;
+ }
+
+ .card-content h2 {
+     margin-bottom: 10px;
+ }
+
+ /*Card Jamile*/
+
+ .card2 {
+     width: 300px;
+     overflow: hidden;
+     border-radius: 15px;
+     box-shadow: 0 0 22px rgba(253, 253, 253, 0.72);
+     background-color: #fff;
+ }
+
+ .card-inner2 {
+     position: relative;
+     overflow: hidden;
+     border-radius: 15px;
+     transition: transform 0.3s ease-in-out;
+ }
+
+ .card2:hover .card-inner2 {
+     transform: scale(1.05);
+ }
+
+ .card-image2 img {
+     width: 100%;
+     height: auto;
+     border-bottom: 2px solid #dddddd00;
+     transition: transform 0.5s ease-in-out;
+ }
+
+ .card2:hover .card-image2 img {
+     transform: scale(1.1);
+ }
+
+ .card-content2 {
+     padding: 20px;
+     text-align: center;
+ }
+
+ .card-content2 h2 {
+     margin-top: 0;
+     margin-bottom: 10px;
+     color: #333;
+ }
+
+ .card-content2 p {
+     margin-bottom: 0;
+     color: #666;
+ }
+
+ /*Card Regis*/
+
+
+ .card3 {
+     width: 300px;
+     overflow: hidden;
+     border-radius: 15px;
+     box-shadow: 0 0 22px rgba(253, 253, 253, 0.72);
+     background-color: #fff;
+ }
+
+ .card-inner3 {
+     position: relative;
+     overflow: hidden;
+     border-radius: 15px;
+     transition: transform 0.3s ease-in-out;
+ }
+
+ .card3:hover .card-inner3 {
+     transform: scale(1.05);
+ }
+
+ .card-image3 img {
+     width: 100%;
+     height: auto;
+     border-bottom: 2px solid #dddddd00;
+     transition: transform 0.5s ease-in-out;
+ }
+
+ .card3:hover .card-image3 img {
+     transform: scale(1.1);
+ }
+
+ .card-content3 {
+     padding: 20px;
+     text-align: center;
+ }
+
+ .card-content3 h2 {
+     margin-top: 0;
+     margin-bottom: 10px;
+     color: #333;
+ }
+
+ .card-content3 p {
+     margin-bottom: 0;
+     color: #666;
+ }
+
+ /*Compre Online*/
+
+ section .flex {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     padding-bottom: 80px;
+
+ }
+
+ .titulo2 {
+     text-align: center;
+     align-items: center;
+     margin-top: 10px;
+     margin-bottom: 50px;
+     font-size: 50px;
+     color: #fff;
+ }
+
+ span {
+     color: #00FF08;
+ }
+
+ .P1 {
+     text-align: center;
+     margin-bottom: 50px;
+     font-size: 28px;
+     color: #fff;
+     padding: 20px;
+ }
+
+ .btn-contato button {
+     padding: 10px 40px;
+     font-size: 18px;
+     font-weight: 600;
+     background-color: #00FF08;
+     border: 0;
+     border-radius: 30px;
+     cursor: pointer;
+     align-items: center;
+     text-align: center;
+
+
+ }
+
+ .btn-contato button:hover {
+     box-shadow: 0px 0px 8px #00ff08;
+     transform: scale(1.2);
+     transition: 0.6s;
+
+ }
+
+ .interface2 {
+     margin-top: 50px;
+     text-align: center;
+ }
+
+ .interface2 button {
+     margin-top: 100px;
+ }
+
+
+ /*Cinco Motivos Para ter um Plano de Saúde*/
+
+ .cinco-motivos {
+
+     padding: 160px 4%;
+
+
+ }
+
+ section .cinco-motivos {
+
+     padding: 40px 4%;
+
+
+ }
+
+
+ .cinco-motivos .txt-cinco-motivos {
+     color: white;
+
+ }
+
+ section .cinco-motivos .flex {
+     align-items: center;
+     gap: 60px;
+ }
+
+ .cinco-motivos .txt-cinco-motivos h2 {
+     font-size: 40px;
+     line-height: 40px;
+     margin-bottom: 100px;
+ }
+
+ .cinco-motivos .txt-cinco-motivos h2 span {
+     display: block;
+ }
+
+ .cinco-motivos .txt-cinco-motivos p {
+     margin: 20px 0;
+     text-align: justify;
+ }
+
+ .cinco-motivos .txt-cinco-motivos strong {
+     color: #00FF08;
+ }
+
+ .cinco-motivos .txt-cinco-motivos .btn-social button {
+     width: 52px;
+     height: 52px;
+     border-radius: 50%;
+     border: none;
+     background-color: #00FF08;
+     font-size: 22px;
+     margin: 0 6px;
+     transition: .2s;
+
+
+ }
+
+ .cinco-motivos .txt-cinco-motivos .btn-social button svg {
+     width: 30px;
+     height: 30px;
+     color: rgba(0, 0, 0, 0.691);
+ }
+
+ .cinco-motivos .txt-cinco-motivos .btn-social button svg:hover {
+
+     transform: scale(1.2);
+     transition: 0.6s;
+ }
+
+ /*Final Cinco Motivos Para ter um Plano de Saúde*/
+
+ .boxform {
+     background-color: #fff;
+     max-width: 100%;
+ }
+
+ /* ESTILO DO FORMULARIO DE CONTATO */
+
+ section.formulario {
+     padding: 80px 4%;
+ }
+
+ form {
+     max-width: 500px;
+     margin: 0 auto;
+     display: flex;
+     justify-content: center;
+     flex-direction: column;
+     gap: 12px;
+
+ }
+
+ form input {
+     width: 100%;
+     background-color: #302d2d;
+     border: 0;
+     outline: 0;
+     padding: 20px 15px;
+     border-radius: 15px;
+     color: #fff;
+     font-size: 16px;
+ }
+
+ form input::placeholder {
+     color: #00FF08;
+ }
+
+ form .btn-enviar {
+     margin-top: 20px;
+     text-align: center;
+ }
+
+ form .btn-enviar input {
+     width: 200px;
+     background-color: #00FF08;
+     color: #000;
+     font-weight: 800;
+     cursor: pointer;
+     transition: .2s;
+
+ }
+
+ /* PAGINA DE OBRIGADO */
+ .obrigado{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #fff;
+    align-items: center;
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+ }
+
+
+
+
+
+
+ /*FINAL DO FORMULÁRIO*/
+
+ /*formulario_email*/
+
+
+
+
+
+
+
+
+
+ /* FOOTER */
+
+ footer {
+     padding: 40px 10%;
+     box-shadow: 0 0 40px 10px #333;
+
+ }
+
+ footer .flex {
+     justify-content: space-between;
+     align-items: center;
+ }
+
+ footer .line-footer {
+     padding: 20px 0;
+ }
+
+ .borda {
+     border-bottom: 2px solid #00FF08;
+ }
+
+  footer .logo-footer {
+      display: flex;
+      align-items: flex-start;
+      gap: 30px;
+  }
+
+  footer .termos {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+  }
+
+ footer .btn-social2 {
+     display: flex;
+     align-items: center;
+     gap: 8px;
+ }
+
+ footer .interface .line-footer .btn-social2 button {
+
+     width: 52px;
+     height: 52px;
+     border-radius: 50%;
+     border: none;
+     background-color: #00FF08;
+     font-size: 22px;
+     margin: 0 6px;
+     transition: .2s;
+
+ }
+
+ footer .interface .line-footer .btn-social2 button svg {
+     width: 30px;
+     height: 30px;
+     color: rgb(0, 0, 0);
+ }
+
+ footer .interface .line-footer .btn-social2 button svg:hover {
+     transform: scale(1.2);
+     transition: 0.6s;
+ }
+
+ footer .termos a {
+     color: #00FF08;
+     padding: 22px;
+ }
+
+ footer .line-footer p {
+     color: white;
+     text-align: center;
+ }
+
+ @media screen and (max-width: 1020px) {
+
+     /* CLASSES GERAIS */
+     .flex {
+         flex-direction: column;
+     }
+
+     /*MENU MOBILE*/
+
+     .btn-abrir-menu {
+         display: block;
+     }
+
+     /* CABEÇALHO*/
+     .menu-desktop, .btn-contato {
+         display: none;
+     }
+
+
+     .topo-do-site h1 {
+
+         font-size: 50px;
+         line-height: 50px;
+         padding: 28px;
+     }
+
+
+     .topo-do-site .txt-topo-site p {
+         color: #fff;
+         padding: 20px;
+     }
+
+     .topo-do-site .img-topo-site img {
+
+         margin-right: 50px;
+
+
+     }
+
+     .orcamento {
+         padding: 20px
+     }
+
+
+     section.topo-do-site .flex {
+         align-items: center;
+         gap: 8px;
+
+     }
+
+     /*especialidades Planos e Coberturas*/
+
+     section .especialidades-e-planos {
+         padding: 40px 4%;
+     }
+
+     .especialidades-e-planos .especialidades-box {
+         color: #fff;
+         padding: 40px;
+         border-radius: 22px;
+         margin-top: 1px;
+         transition: .2s;
+     }
+
+     .especialidades-e-planos .especialidades-box:hover {
+         transform: scale(1.08);
+         box-shadow: none
+     }
+
+
+     h2.titulo {
+         color: #fff;
+         font-size: 30px;
+         text-align: center;
+     }
+
+     h2.titulo span {
+         color: #00FF08;
+
+     }
+
+     /*QUEM SOMOS*/
+
+     .card {
+         margin: 50px 30px;
+     }
+
+     /*Compre OnLine*/
+     .compre-online {
+
+         padding: 10px;
+
+     }
+
+     /* FORMULÁRIO DE LEADS - MOBILE */
+     .form-lead-capture {
+       max-width: 100%;
+       padding: 0 10px;
+     }
+
+     .form-lead-container {
+       padding: 25px 20px;
+     }
+
+     .form-lead-container h3 {
+       font-size: 22px;
+     }
+
+     .form-subtitle {
+       font-size: 13px;
+     }
+
+     .form-row-2 {
+       grid-template-columns: 1fr;
+     }
+
+     .form-group input,
+     .form-group select {
+       font-size: 16px; /* Evita zoom automático no iOS */
+     }
+
+     .btn-enviar-lead {
+       font-size: 14px;
+       padding: 12px 15px;
+     }
+
+     /*Cinco Motivos Para ter um Plano de Saúde*/
+
+     .img-cinco-motivos {
+         margin-right: 20px;
+         margin-bottom: 5px;
+     }
+
+
+     .txt-cinco-motivos {
+         padding: 20px;
+     }
+
+     /*Inicio Formulario*/
+
+     form {
+         padding: 100px 6%;
+     }
+
+     /*footer*/
+
+     footer .termos a {
+         display: block;
+         text-align: center;
+     }
+
+ }
