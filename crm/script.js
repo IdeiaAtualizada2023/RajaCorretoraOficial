@@ -271,6 +271,8 @@ function editCard(id) {
   document.getElementById("titularCpf").value = lead.titular.cpf;
   document.getElementById("titularNascimento").value = lead.titular.nascimento;
   document.getElementById("cidade").value = lead.titular.cidade;
+  document.getElementById("telefone1").value = lead.titular.telefone1 || "";
+  document.getElementById("telefone2").value = lead.titular.telefone2 || "";
   document.getElementById("titularPlano").innerHTML = getPlanOptionsHTML(
     lead.titular.plano
   );
@@ -343,6 +345,8 @@ document.getElementById("leadForm").addEventListener("submit", (e) => {
     cpf: document.getElementById("titularCpf").value,
     nascimento: document.getElementById("titularNascimento").value,
     cidade: document.getElementById("cidade").value,
+    telefone1: document.getElementById("telefone1").value,
+    telefone2: document.getElementById("telefone2").value,
     plano: document.getElementById("titularPlano").value,
     valor: document.getElementById("titularValor").value,
     desconto: document.getElementById("titularDesconto").value,
