@@ -30,21 +30,23 @@ CREATE TABLE public.leads (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   user_id UUID REFERENCES auth.users(id) ON DELETE SET NULL,
   
+  -- Status da venda (usa os mesmos IDs das colunas do Kanban)
+  status TEXT DEFAULT 'col1' CHECK (status IN ('col1', 'col2', 'col3', 'col4', 'col5', 'col6', 'cancelados')),
+  
   -- Dados da Venda
   data_venda DATE NOT NULL,
   data_vencimento DATE NOT NULL,
-  status TEXT DEFAULT 'novo' CHECK (status IN ('novo', 'enviado', 'pendente', 'finalizado', 'cancelado')),
   
   -- Dados do Titular
   titular_nome TEXT NOT NULL,
   titular_cpf TEXT,
   titular_nascimento DATE,
+  titular_cidade TEXT,
+  titular_telefone1 TEXT,
+  titular_telefone2 TEXT,
   titular_plano TEXT,
   titular_valor DECIMAL(10,2),
   titular_desconto DECIMAL(10,2) DEFAULT 0,
-  
-  -- Localização
-  cidade TEXT,
   
   -- Dependentes (armazenado como JSON)
   dependentes JSONB DEFAULT '[]'::jsonb,

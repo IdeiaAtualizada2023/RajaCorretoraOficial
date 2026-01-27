@@ -1,3 +1,9 @@
+// =====================================================
+// SCRIPT CRM - Versão Supabase
+// =====================================================
+
+import { supabase, getAllLeads, createLead, updateLead, deleteLead } from './supabase-client.js';
+
 // --- Configurações ---
 const columnsConfig = [
   { id: "col1", title: "Primeiro Atendimento" },
@@ -34,28 +40,52 @@ const planos = [
 ];
 
 const nomesMeses = [
-  "Janeiro",
-  "Fevereiro",
-  "Março",
-  "Abril",
-  "Maio",
-  "Junho",
-  "Julho",
-  "Agosto",
-  "Setembro",
-  "Outubro",
-  "Novembro",
-  "Dezembro",
+  "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+  "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro",
 ];
 
 // Dados e Estado
-let leads = JSON.parse(localStorage.getItem("crm_leads_v6")) || [];
+let leads = [];
 let filtroMesAtual = "all";
 let termoBusca = "";
 
 const board = document.getElementById("board");
 const containerDependentes = document.getElementById("containerDependentes");
 const monthTabsContainer = document.getElementById("monthTabs");
+
+// --- Carregar Leads do Supabase ---
+async function loadLeadsFromSupabase() {
+  try {
+    const data = await getAllLeads();
+    
+    // Converter formato do Supabase para formato do frontend
+    leads = data.map(lead => ({
+      id: lead.id,
+      status: lead.status,
+      venda: lead.data_venda,
+      vencimento: lead.data_vencimento,
+      titular: {
+        nome: lead.titular_nome,
+        cpf: lead.titular_cpf,
+        nascimento: lead.titular_nascimento,
+        cidade: lead.titular_cidade,
+        telefone1: lead.titular_telefone1,
+        telefone2: lead.titular_telefone2,
+        plano: lead.titular_plano,
+        valor: lead.titular_valor,
+        desconto: lead.titular_desconto
+      },
+      dependentes: lead.dependentes || [],
+      totalGeral: lead.total_geral
+    }));
+    
+    renderTabs();
+    renderBoard();
+  } catch (error) {
+    console.error('Erro ao carregar leads:', error);
+    alert('Erro ao carregar dados. Verifique sua conexão.');
+  }
+}
 
 // --- Função Principal: Renderizar Abas com Totais ---
 function renderTabs() {
@@ -109,7 +139,7 @@ function filtrarMes(mes) {
   renderBoard();
 }
 
-function filtrarBusca() {
+window.filtrarBusca = function() {
   termoBusca = document.getElementById("searchInput").value.toLowerCase();
   renderBoard();
 }
@@ -212,17 +242,20 @@ function allowDrop(ev) {
   ev.preventDefault();
   ev.currentTarget.classList.add("drag-over");
 }
+
 function drag(ev) {
   ev.dataTransfer.setData("text", ev.target.id);
   ev.target.classList.add("dragging");
 }
+
 document.addEventListener("dragend", (ev) => {
   document
     .querySelectorAll(".column-body")
     .forEach((el) => el.classList.remove("drag-over"));
   ev.target.classList.remove("dragging");
 });
-function drop(ev) {
+
+async function drop(ev) {
   ev.preventDefault();
   ev.currentTarget.classList.remove("drag-over");
   const cardId = ev.dataTransfer.getData("text");
@@ -230,13 +263,22 @@ function drop(ev) {
   if (columnDiv) {
     const leadIndex = leads.findIndex((l) => l.id == cardId);
     if (leadIndex > -1) {
-      leads[leadIndex].status = columnDiv.dataset.id;
-      saveData();
+      const newStatus = columnDiv.dataset.id;
+      leads[leadIndex].status = newStatus;
+      
+      // Atualizar no Supabase
+      await updateLead(cardId, { status: newStatus });
+      
       renderTabs();
       renderBoard();
     }
   }
 }
+
+// Tornar funções globais
+window.allowDrop = allowDrop;
+window.drag = drag;
+window.drop = drop;
 
 // --- Funções Auxiliares (Modal, Forms) ---
 function getPlanOptionsHTML(selected) {
@@ -249,7 +291,7 @@ function getPlanOptionsHTML(selected) {
 }
 document.getElementById("titularPlano").innerHTML = getPlanOptionsHTML();
 
-function openModal() {
+window.openModal = function() {
   document.getElementById("modalOverlay").style.display = "flex";
   document.getElementById("leadForm").reset();
   document.getElementById("editId").value = "";
@@ -260,7 +302,7 @@ function openModal() {
   document.getElementById("dataVenda").value = hoje;
 }
 
-function editCard(id) {
+window.editCard = function(id) {
   const lead = leads.find((l) => l.id === id);
   if (!lead) return;
   document.getElementById("editId").value = lead.id;
@@ -286,11 +328,11 @@ function editCard(id) {
   document.getElementById("modalOverlay").style.display = "flex";
 }
 
-function closeModal() {
+window.closeModal = function() {
   document.getElementById("modalOverlay").style.display = "none";
 }
 
-function addDependente(data = null) {
+window.addDependente = function(data = null) {
   const div = document.createElement("div");
   div.classList.add("dependente-item");
   const nomeVal = data ? data.nome : "";
@@ -317,12 +359,12 @@ function addDependente(data = null) {
   containerDependentes.appendChild(div);
 }
 
-function removeDependente(btn) {
+window.removeDependente = function(btn) {
   btn.closest(".dependente-item").remove();
   calcularTotalGeral();
 }
 
-function calcularTotalGeral() {
+window.calcularTotalGeral = function() {
   const tValor = parseFloat(document.getElementById("titularValor").value) || 0;
   const tDesc =
     parseFloat(document.getElementById("titularDesconto").value) || 0;
@@ -337,9 +379,10 @@ function calcularTotalGeral() {
   return soma;
 }
 
-document.getElementById("leadForm").addEventListener("submit", (e) => {
+document.getElementById("leadForm").addEventListener("submit", async (e) => {
   e.preventDefault();
   const editId = document.getElementById("editId").value;
+  
   const titular = {
     nome: document.getElementById("titularNome").value,
     cpf: document.getElementById("titularCpf").value,
@@ -351,6 +394,7 @@ document.getElementById("leadForm").addEventListener("submit", (e) => {
     valor: document.getElementById("titularValor").value,
     desconto: document.getElementById("titularDesconto").value,
   };
+  
   const dependentesList = [];
   document.querySelectorAll(".dependente-item").forEach((div) => {
     dependentesList.push({
@@ -362,39 +406,70 @@ document.getElementById("leadForm").addEventListener("submit", (e) => {
       desconto: div.querySelector(".dep-desc").value,
     });
   });
-  const leadData = {
-    id: editId ? editId : "lead-" + Date.now(),
+  
+  const totalGeral = calcularTotalGeral();
+  
+  // Formato para Supabase
+  const leadDataForSupabase = {
+    data_venda: document.getElementById("dataVenda").value,
+    data_vencimento: document.getElementById("dataVencimento").value,
     status: editId ? leads.find((l) => l.id === editId).status : "col1",
-    venda: document.getElementById("dataVenda").value,
-    vencimento: document.getElementById("dataVencimento").value,
-    titular: titular,
+    titular_nome: titular.nome,
+    titular_cpf: titular.cpf,
+    titular_nascimento: titular.nascimento,
+    titular_cidade: titular.cidade,
+    titular_telefone1: titular.telefone1,
+    titular_telefone2: titular.telefone2,
+    titular_plano: titular.plano,
+    titular_valor: parseFloat(titular.valor),
+    titular_desconto: parseFloat(titular.desconto),
     dependentes: dependentesList,
-    totalGeral: calcularTotalGeral(),
+    total_geral: totalGeral
   };
-  if (editId) {
-    const index = leads.findIndex((l) => l.id === editId);
-    if (index > -1) leads[index] = leadData;
-  } else {
-    leads.push(leadData);
+  
+  try {
+    if (editId) {
+      // Atualizar lead existente
+      const result = await updateLead(editId, leadDataForSupabase);
+      if (result.success) {
+        // Recarregar dados
+        await loadLeadsFromSupabase();
+        closeModal();
+      } else {
+        alert('Erro ao atualizar: ' + result.message);
+      }
+    } else {
+      // Criar novo lead
+      const result = await createLead(leadDataForSupabase);
+      if (result.success) {
+        // Recarregar dados
+        await loadLeadsFromSupabase();
+        closeModal();
+      } else {
+        alert('Erro ao criar: ' + result.message);
+      }
+    }
+  } catch (error) {
+    console.error('Erro ao salvar lead:', error);
+    alert('Erro ao salvar. Verifique sua conexão.');
   }
-  saveData();
-  renderTabs();
-  renderBoard();
-  closeModal();
 });
 
-function deleteCard(id) {
-  if (confirm("Tem certeza?")) {
-    leads = leads.filter((l) => l.id !== id);
-    saveData();
-    renderTabs();
-    renderBoard();
+window.deleteCard = async function(id) {
+  if (confirm("Tem certeza que deseja excluir este lead?")) {
+    try {
+      const result = await deleteLead(id);
+      if (result.success) {
+        await loadLeadsFromSupabase();
+      } else {
+        alert('Erro ao excluir: ' + result.message);
+      }
+    } catch (error) {
+      console.error('Erro ao deletar lead:', error);
+      alert('Erro ao excluir. Verifique sua conexão.');
+    }
   }
 }
 
-function saveData() {
-  localStorage.setItem("crm_leads_v6", JSON.stringify(leads));
-}
-
-renderTabs();
-renderBoard();
+// Inicializar carregando dados do Supabase
+loadLeadsFromSupabase();

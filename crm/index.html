@@ -7,18 +7,24 @@
     <title>CRM Vendas - Hapvida / Notrelife</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="auth.js"></script>
 </head>
 
 <body>
-    <script>
+    <script type="module">
+        import { auth } from './supabase-auth.js';
+
         // Proteção: redirecionar para login se não autenticado
-        if (!auth.isAuthenticated()) {
+        const isAuth = await auth.isAuthenticated();
+        if (!isAuth) {
             window.location.href = 'login.html';
         }
 
         // Obter informações do usuário
-        const currentUser = auth.getSession();
+        const currentUser = await auth.getSession();
+
+        // Disponibilizar globalmente
+        window.currentUser = currentUser;
+        window.auth = auth;
     </script>
 
     <header>
@@ -141,20 +147,27 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
-    <script>
-        // Exibir nome do usuário
-        document.getElementById('userName').textContent = currentUser.name;
+    <script type="module" src="script.js"></script>
+    <script type="module">
+        import { auth } from './supabase-auth.js';
 
-        // Mostrar botão Admin se for admin
-        if (auth.isAdmin()) {
-            document.getElementById('btnAdmin').style.display = 'inline-flex';
-        }
+        // Exibir nome do usuário (async)
+        (async () => {
+            const currentUser = await auth.getSession();
+            if (currentUser) {
+                document.getElementById('userName').textContent = currentUser.name;
+
+                // Mostrar botão Admin se for admin
+                if (await auth.isAdmin()) {
+                    document.getElementById('btnAdmin').style.display = 'inline-flex';
+                }
+            }
+        })();
 
         // Função de logout
-        function logout() {
+        window.logout = async function () {
             if (confirm('Deseja realmente sair?')) {
-                auth.logout();
+                await auth.logout();
                 window.location.href = 'login.html';
             }
         }
