@@ -8,12 +8,14 @@ import { supabase, getAllLeads, createLead, updateLead, deleteLead } from './sup
 const columnsConfig = [
   { id: "col1", title: "Primeiro Atendimento" },
   { id: "col2", title: "Orçamento Enviado" },
-  // { id: "col3", title: "Venda Pendente" },
-  // { id: "col4", title: "Venda Finalizada" },
   { id: "col5", title: "Aguardando Pagamento" },
   { id: "col6", title: "Venda Implantada / Pago" },
   { id: "cancelados", title: "Cancelados" },
 ];
+
+// Colunas desabilitadas (podem ser reativadas futuramente):
+// { id: "col3", title: "Venda Pendente" },
+// { id: "col4", title: "Venda Finalizada" },
 
 const planos = [
   "N. P Individual co coparticipação Parcial",
