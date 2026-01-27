@@ -7,7 +7,7 @@ import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js
 
 // Configurações do projeto
 const SUPABASE_URL = 'https://ebnpbecpckshavgnabqe.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_zBQAusjPzi68UItIFjeHMA_V3OoAW3D';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVibnBiZWNwY2tzaGF2Z25hYnFlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk1MzUyMTksImV4cCI6MjA4NTExMTIxOX0.sm1mU2d9vURp2EtEpd_jr4Rh84-DIXwzzdEtW7HbRPE';
 
 // Criar cliente Supabase
 export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
