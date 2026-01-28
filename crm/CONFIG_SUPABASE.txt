@@ -1,0 +1,16 @@
+# ===== CONFIGURAÇÃO SUPABASE - URGENTE =====
+
+ACESSE: https://app.supabase.com/project/ebnpbecpckshavgnabqe
+
+1. Authentication → URL Configuration
+
+2. Site URL:
+https://gigadendesaude.raka.com.br
+
+3. Redirect URLs (adicione esta linha):
+https://gigadendesaude.raka.com.br/**
+
+4. Clique em SAVE
+
+===== ISSO É CRÍTICO! =====
+Se o domínio não estiver configurado, o Supabase vai bloquear as requisições mesmo com a chave correta!
