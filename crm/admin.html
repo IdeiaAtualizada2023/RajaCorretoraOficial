@@ -289,15 +289,28 @@
         </div>
     </div>
 
-    <script src="auth.js"></script>
-    <script>
+    <script type="module">
+        import { auth } from './supabase-auth.js';
+        import { getAllUsers, createUser, updateUserProfile, deleteUser as supabaseDeleteUser } from './supabase-client.js';
+
         // Proteção: apenas admin pode acessar
-        if (!auth.isAuthenticated()) {
-            window.location.href = 'login.html';
-        } else if (!auth.isAdmin()) {
-            alert('Acesso negado! Apenas administradores podem acessar esta página.');
-            window.location.href = 'index.html';
-        }
+        (async () => {
+            const isAuth = await auth.isAuthenticated();
+            if (!isAuth) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const isAdmin = await auth.isAdmin();
+            if (!isAdmin) {
+                alert('Acesso negado! Apenas administradores podem acessar esta página.');
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // Se for admin, carrega os usuários
+            loadUsers();
+        })();
 
         const alertBox = document.getElementById('alertBox');
         const modalOverlay = document.getElementById('modalOverlay');
@@ -312,69 +325,93 @@
             }, 5000);
         }
 
-        function loadUsers() {
-            const users = auth.getAllUsers();
-            usersTableBody.innerHTML = '';
+        async function loadUsers() {
+            try {
+                const users = await getAllUsers();
+                usersTableBody.innerHTML = '';
 
-            users.forEach(user => {
-                const row = document.createElement('tr');
-                const date = new Date(user.createdAt).toLocaleDateString('pt-BR');
+                users.forEach(user => {
+                    const row = document.createElement('tr');
+                    const date = new Date(user.created_at).toLocaleDateString('pt-BR');
+                    // O email vem de auth.users!inner(email) no select do client
+                    const email = user.auth?.users?.email || 'N/A';
 
-                row.innerHTML = `
-                    <td>${user.name}</td>
-                    <td>${user.email}</td>
-                    <td><span class="badge badge-${user.type}">${user.type === 'admin' ? 'Administrador' : 'Vendedor'}</span></td>
-                    <td>${date}</td>
-                    <td>
-                        <div class="action-btns">
-                            <button class="btn-icon edit" onclick="editUser('${user.id}')" title="Editar">
-                                <span class="material-icons">edit</span>
-                            </button>
-                            <button class="btn-icon delete" onclick="deleteUser('${user.id}')" title="Excluir">
-                                <span class="material-icons">delete</span>
-                            </button>
-                        </div>
-                    </td>
-                `;
-                usersTableBody.appendChild(row);
-            });
+                    row.innerHTML = `
+                        <td>${user.name}</td>
+                        <td>${email}</td>
+                        <td><span class="badge badge-${user.type}">${user.type === 'admin' ? 'Administrador' : 'Vendedor'}</span></td>
+                        <td>${date}</td>
+                        <td>
+                            <div class="action-btns">
+                                <button class="btn-icon edit" data-id="${user.id}" title="Editar">
+                                    <span class="material-icons">edit</span>
+                                </button>
+                                <button class="btn-icon delete" data-id="${user.id}" title="Excluir">
+                                    <span class="material-icons">delete</span>
+                                </button>
+                            </div>
+                        </td>
+                    `;
+
+                    // Adicionar listeners para os botões logicamente para evitar escopo global
+                    row.querySelector('.edit').onclick = () => editUser(user.id);
+                    row.querySelector('.delete').onclick = () => handleDelete(user.id);
+
+                    usersTableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Erro ao listar usuários:', error);
+                showAlert('Erro ao carregar lista de usuários.', 'error');
+            }
         }
 
-        function openAddModal() {
+        window.openAddModal = function () {
             document.getElementById('modalTitle').textContent = 'Novo Vendedor';
             document.getElementById('editUserId').value = '';
             userForm.reset();
+            document.getElementById('userPassword').required = true;
+            document.getElementById('userPassword').placeholder = 'Mínimo 6 caracteres';
             modalOverlay.style.display = 'flex';
         }
 
-        function closeModal() {
+        window.closeModal = function () {
             modalOverlay.style.display = 'none';
         }
 
-        function editUser(userId) {
-            const user = auth.getUserById(userId);
-            if (!user) return;
+        async function editUser(userId) {
+            try {
+                const users = await getAllUsers();
+                const user = users.find(u => u.id === userId);
+                if (!user) return;
 
-            document.getElementById('modalTitle').textContent = 'Editar Usuário';
-            document.getElementById('editUserId').value = user.id;
-            document.getElementById('userName').value = user.name;
-            document.getElementById('userEmail').value = user.email;
-            document.getElementById('userPassword').value = ''; // Deixar vazio
-            document.getElementById('userPassword').placeholder = 'Deixe vazio para manter a senha atual';
-            document.getElementById('userPassword').required = false;
-            document.getElementById('userType').value = user.type;
-            modalOverlay.style.display = 'flex';
+                document.getElementById('modalTitle').textContent = 'Editar Usuário';
+                document.getElementById('editUserId').value = user.id;
+                document.getElementById('userName').value = user.name;
+                document.getElementById('userEmail').value = user.auth?.users?.email || '';
+                document.getElementById('userPassword').value = ''; // Deixar vazio
+                document.getElementById('userPassword').placeholder = 'Alteração de senha via Admin não disponível no momento';
+                document.getElementById('userPassword').disabled = true; // Por segurança, edição de senha requer lógica extra no Supabase
+                document.getElementById('userPassword').required = false;
+                document.getElementById('userType').value = user.type;
+                modalOverlay.style.display = 'flex';
+            } catch (error) {
+                showAlert('Erro ao buscar dados do usuário.', 'error');
+            }
         }
 
-        function deleteUser(userId) {
+        async function handleDelete(userId) {
             if (!confirm('Tem certeza que deseja excluir este usuário?')) return;
 
-            const result = auth.deleteUser(userId);
-            showAlert(result.message, result.success ? 'success' : 'error');
-            if (result.success) loadUsers();
+            try {
+                const result = await supabaseDeleteUser(userId);
+                showAlert(result.success ? 'Usuário excluído com sucesso!' : result.message, result.success ? 'success' : 'error');
+                if (result.success) loadUsers();
+            } catch (error) {
+                showAlert('Erro ao excluir usuário.', 'error');
+            }
         }
 
-        userForm.addEventListener('submit', (e) => {
+        userForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             const userId = document.getElementById('editUserId').value;
@@ -383,27 +420,31 @@
             const password = document.getElementById('userPassword').value;
             const type = document.getElementById('userType').value;
 
-            let result;
-
-            if (userId) {
-                // Atualizar
-                const updates = { name, email, type };
-                if (password) updates.password = password;
-                result = auth.updateUser(userId, updates);
-            } else {
-                // Criar novo
-                if (!password || password.length < 6) {
-                    showAlert('A senha deve ter no mínimo 6 caracteres!', 'error');
-                    return;
+            try {
+                if (userId) {
+                    // Atualizar perfil
+                    const result = await updateUserProfile(userId, { name, type });
+                    showAlert(result.success ? 'Perfil atualizado com sucesso!' : result.message, result.success ? 'success' : 'error');
+                    if (result.success) {
+                        closeModal();
+                        loadUsers();
+                    }
+                } else {
+                    // Criar novo usuário no Supabase
+                    if (!password || password.length < 6) {
+                        showAlert('A senha deve ter no mínimo 6 caracteres!', 'error');
+                        return;
+                    }
+                    const result = await createUser(email, password, name, type);
+                    showAlert(result.success ? 'Vendedor cadastrado com sucesso!' : result.message, result.success ? 'success' : 'error');
+                    if (result.success) {
+                        closeModal();
+                        loadUsers();
+                        userForm.reset();
+                    }
                 }
-                result = auth.registerUser(email, password, name, type);
-            }
-
-            showAlert(result.message, result.success ? 'success' : 'error');
-            if (result.success) {
-                closeModal();
-                loadUsers();
-                userForm.reset();
+            } catch (error) {
+                showAlert('Ocorreu um erro ao salvar o usuário.', 'error');
             }
         });
 
@@ -411,9 +452,6 @@
         modalOverlay.addEventListener('click', (e) => {
             if (e.target === modalOverlay) closeModal();
         });
-
-        // Carrega usuários ao iniciar
-        loadUsers();
     </script>
 </body>
 

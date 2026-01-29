@@ -150,51 +150,34 @@ CREATE POLICY "Admins can delete profiles"
 -- 5.2 POLÍTICAS PARA leads
 -- =====================================================
 
--- Vendedores podem ver apenas seus próprios leads
-CREATE POLICY "Vendedores can view own leads"
+-- Todos os usuários autenticados podem VER todos os leads
+-- Isso garante acompanhamento total da equipe em qualquer lugar
+CREATE POLICY "Authenticated users can view all leads"
   ON public.leads FOR SELECT
-  USING (auth.uid() = user_id);
+  USING (auth.role() = 'authenticated');
 
--- Admins podem ver todos os leads
-CREATE POLICY "Admins can view all leads"
-  ON public.leads FOR SELECT
-  USING (
-    EXISTS (
-      SELECT 1 FROM public.user_profiles
-      WHERE id = auth.uid() AND type = 'admin'
-    )
-  );
-
--- Usuários autenticados podem inserir leads
+-- Usuários autenticados podem inserir seus próprios leads
 CREATE POLICY "Users can insert own leads"
   ON public.leads FOR INSERT
   WITH CHECK (auth.uid() = user_id);
 
--- Vendedores podem atualizar apenas seus próprios leads
-CREATE POLICY "Vendedores can update own leads"
-  ON public.leads FOR UPDATE
-  USING (auth.uid() = user_id);
-
--- Admins podem atualizar todos os leads
-CREATE POLICY "Admins can update all leads"
+-- Somente o dono ou admin pode atualizar o lead
+CREATE POLICY "Owners and Admins can update leads"
   ON public.leads FOR UPDATE
   USING (
-    EXISTS (
+    auth.uid() = user_id 
+    OR EXISTS (
       SELECT 1 FROM public.user_profiles
       WHERE id = auth.uid() AND type = 'admin'
     )
   );
 
--- Vendedores podem deletar apenas seus próprios leads
-CREATE POLICY "Vendedores can delete own leads"
-  ON public.leads FOR DELETE
-  USING (auth.uid() = user_id);
-
--- Admins podem deletar todos os leads
-CREATE POLICY "Admins can delete all leads"
+-- Somente o dono ou admin pode deletar o lead
+CREATE POLICY "Owners and Admins can delete leads"
   ON public.leads FOR DELETE
   USING (
-    EXISTS (
+    auth.uid() = user_id 
+    OR EXISTS (
       SELECT 1 FROM public.user_profiles
       WHERE id = auth.uid() AND type = 'admin'
     )

@@ -42,6 +42,7 @@
 
         <div class="user-info">
             <span id="userName"></span>
+            <span id="userEmailTag" style="font-size: 0.8rem; color: #666; margin-right: 10px;"></span>
             <button id="btnAdmin" class="btn-admin" onclick="window.location.href='admin.html'" style="display:none">
                 <span class="material-icons">admin_panel_settings</span>
             </button>
@@ -156,6 +157,7 @@
             const currentUser = await auth.getSession();
             if (currentUser) {
                 document.getElementById('userName').textContent = currentUser.name;
+                document.getElementById('userEmailTag').textContent = `(${currentUser.email})`;
 
                 // Mostrar botão Admin se for admin
                 if (await auth.isAdmin()) {

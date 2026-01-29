@@ -8,6 +8,8 @@ import { supabase, getAllLeads, createLead, updateLead, deleteLead } from './sup
 const columnsConfig = [
   { id: "col1", title: "Primeiro Atendimento" },
   { id: "col2", title: "Orçamento Enviado" },
+  { id: "col3", title: "Venda Pendente" },
+  { id: "col4", title: "Venda Finalizada" },
   { id: "col5", title: "Aguardando Pagamento" },
   { id: "col6", title: "Venda Implantada / Pago" },
   { id: "cancelados", title: "Cancelados" },
@@ -214,14 +216,14 @@ function createCardElement(lead) {
 
   div.innerHTML = `
         <div class="card-actions">
-            <button class="icon-btn edit" onclick="editCard('${
+            <button class="icon-btn edit" onclick="editCard(event, '${
               lead.id
-            }')" title="Editar">
+            }')" title="Editar" draggable="false">
                 <span class="material-icons">edit</span>
             </button>
-            <button class="icon-btn delete" onclick="deleteCard('${
+            <button class="icon-btn delete" onclick="deleteCard(event, '${
               lead.id
-            }')" title="Excluir">
+            }')" title="Excluir" draggable="false">
                 <span class="material-icons">delete</span>
             </button>
         </div>
@@ -246,8 +248,11 @@ function allowDrop(ev) {
 }
 
 function drag(ev) {
-  ev.dataTransfer.setData("text", ev.target.id);
-  ev.target.classList.add("dragging");
+  const card = ev.target.closest('.card');
+  if (card) {
+    ev.dataTransfer.setData("text", card.id);
+    card.classList.add("dragging");
+  }
 }
 
 document.addEventListener("dragend", (ev) => {
@@ -304,7 +309,8 @@ window.openModal = function() {
   document.getElementById("dataVenda").value = hoje;
 }
 
-window.editCard = function(id) {
+window.editCard = function(event, id) {
+  if (event) event.stopPropagation();
   const lead = leads.find((l) => l.id === id);
   if (!lead) return;
   document.getElementById("editId").value = lead.id;
@@ -457,7 +463,8 @@ document.getElementById("leadForm").addEventListener("submit", async (e) => {
   }
 });
 
-window.deleteCard = async function(id) {
+window.deleteCard = async function(event, id) {
+  if (event) event.stopPropagation();
   if (confirm("Tem certeza que deseja excluir este lead?")) {
     try {
       const result = await deleteLead(id);
