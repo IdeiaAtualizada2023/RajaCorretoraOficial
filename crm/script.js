@@ -2,14 +2,14 @@
 // SCRIPT CRM - Versão Supabase
 // =====================================================
 
-import { supabase, getAllLeads, createLead, updateLead, deleteLead } from './supabase-client.js';
+import { supabase, getAllLeads, createLead, updateLead, deleteLead, subscribeToLeads } from './supabase-client.js';
 
 // --- Configurações ---
 const columnsConfig = [
   { id: "col1", title: "Primeiro Atendimento" },
   { id: "col2", title: "Orçamento Enviado" },
-  { id: "col3", title: "Venda Pendente" },
-  { id: "col4", title: "Venda Finalizada" },
+  // { id: "col3", title: "Venda Pendente" },
+  // { id: "col4", title: "Venda Finalizada" },
   { id: "col5", title: "Aguardando Pagamento" },
   { id: "col6", title: "Venda Implantada / Pago" },
   { id: "cancelados", title: "Cancelados" },
@@ -482,3 +482,8 @@ window.deleteCard = async function(event, id) {
 
 // Inicializar carregando dados do Supabase
 loadLeadsFromSupabase();
+
+// Inscrever para atualizações em tempo real
+subscribeToLeads(() => {
+  loadLeadsFromSupabase();
+});

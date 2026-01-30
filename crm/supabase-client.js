@@ -226,6 +226,27 @@ export async function updateLead(leadId, updates) {
 }
 
 /**
+ * Inscrever para mudanças em tempo real na tabela de leads
+ */
+export function subscribeToLeads(callback) {
+  return supabase
+    .channel('leads-changes')
+    .on(
+      'postgres_changes',
+      {
+        event: '*', 
+        schema: 'public',
+        table: 'leads'
+      },
+      (payload) => {
+        console.log('Mudança detectada no lead:', payload);
+        callback(payload);
+      }
+    )
+    .subscribe();
+}
+
+/**
  * Deletar lead
  */
 export async function deleteLead(leadId) {
