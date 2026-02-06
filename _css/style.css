@@ -797,17 +797,105 @@
  }
 
  /* PAGINA DE OBRIGADO */
- .obrigado{
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    color: #fff;
-    align-items: center;
-    max-width: 500px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    gap: 12px;
+ /* PAGINA DE OBRIGADO V2 */
+ .obrigado-v2 {
+     padding: 100px 4%;
+     min-height: 60vh;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     text-align: center;
  }
+
+ .obrigado-container {
+     background: linear-gradient(135deg, rgba(0, 255, 8, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+     border: 1px solid rgba(0, 255, 8, 0.2);
+     border-radius: 30px;
+     padding: 60px 40px;
+     max-width: 800px;
+     margin: 0 auto;
+     backdrop-filter: blur(15px);
+     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+ }
+
+ .success-icon {
+     margin-bottom: 30px;
+     animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+ }
+
+ @keyframes bounceIn {
+     0% { transform: scale(0); opacity: 0; }
+     60% { transform: scale(1.1); }
+     100% { transform: scale(1); opacity: 1; }
+ }
+
+ .obrigado-v2 h2.titulo {
+     margin-top: 0;
+     margin-bottom: 20px;
+     font-size: 42px;
+ }
+
+ .obrigado-v2 .P1 {
+     font-size: 18px;
+     line-height: 1.6;
+     color: rgba(255, 255, 255, 0.8);
+     margin-bottom: 40px;
+     max-width: 600px;
+     margin-left: auto;
+     margin-right: auto;
+ }
+
+ .obrigado-btns {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     gap: 30px;
+ }
+
+ .btn-social-obrigado {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     gap: 15px;
+ }
+
+ .btn-social-obrigado p {
+     color: #fff;
+     font-size: 14px;
+     opacity: 0.7;
+ }
+
+ .btn-whats-obrigado {
+     padding: 12px 30px;
+     background-color: transparent;
+     border: 2px solid #00FF08;
+     color: #00FF08;
+     border-radius: 30px;
+     font-weight: 600;
+     cursor: pointer;
+     transition: all 0.3s ease;
+     display: flex;
+     align-items: center;
+     gap: 10px;
+ }
+
+ .btn-whats-obrigado:hover {
+     background-color: #00FF08;
+     color: #000;
+     box-shadow: 0 0 20px rgba(0, 255, 8, 0.4);
+     transform: translateY(-3px);
+ }
+
+ @media screen and (max-width: 768px) {
+     .obrigado-v2 h2.titulo {
+         font-size: 32px;
+     }
+     
+     .obrigado-container {
+         padding: 40px 20px;
+     }
+ }
+
 
 
 
